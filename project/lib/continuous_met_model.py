@@ -4,11 +4,11 @@
 
 import numpy as np
 
-__author__ = "Austin Dial, Alice Seaborn"
+__author__ = "Alice Seaborn"
 
 __version__ = "0.0.0"
 __maintainer__ = "Alice Seaborn"
-__email__ = "adial@mail.bradley.edu"
+__email__ = "seaborn.dev@gmail.com"
 __status__ = "Prototype"
 
 
