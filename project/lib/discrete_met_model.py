@@ -10,7 +10,6 @@ __email__ = "seaborn.dev@gmail.com"
 __status__ = "Prototype"
 
 
-
 def _calc_pounds_to_kg(pounds):
     return pounds/2.205
 
@@ -21,7 +20,6 @@ def dmet_cycling_met_units(speed):
     speed throughout the workout. Assumes speed is provided
     in miles per hour.
     """
-    
     if speed <= 10.0:
         return 4
     elif speed <= 11.99:
@@ -42,10 +40,8 @@ def dmet_calories_per_minute(weight, speed):
     the workout parameters. Assumes weight is provided
     in kilograms and the speed is provided in miles per hour.
     """
-    
     mets = dmet_cycling_met_units(speed)
     weight = _calc_pounds_to_kg(weight)
-    
     return 0.0175*mets*weight
 
 
@@ -56,11 +52,8 @@ def dmet_calc_total_calories_burned(weight, duration, speed):
     is provided in pounds, duration in minutes, speed in
     miles per hour.
     """
-    
     calories_per_minute = dmet_calories_per_minute(weight, speed)
-    
     return calories_per_minute*duration
-
 
 
 if __name__ == '__main__':

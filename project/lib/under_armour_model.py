@@ -11,7 +11,6 @@ __email__ = "seaborn.dev@gmail.com"
 __status__ = "Prototype"
 
 
-
 def _calc_pounds_to_kg(pounds):
     return pounds/2.205
 
@@ -29,7 +28,6 @@ def under_armour_calories_per_minute(weight, speed):
 def under_armour_calc_total_calories_burned(weight, duration, speed):
     calories_per_minute = under_armour_calories_per_minute(weight, speed)
     return calories_per_minute*duration
-
 
 
 if __name__ == '__main__':
