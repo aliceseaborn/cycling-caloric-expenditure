@@ -22,34 +22,17 @@ def _coefficients():
 
 
 def cmet_cycling_met_units(speed):
-    """
-    Calculates the MET units based on the provided average
-    speed throughout the workout. Uses a third-order MET
-    polynomial. Assumes speed is provided in miles per hour.
-    """
     polynomial = np.poly1d(_coefficients())
     return polynomial(speed)
 
 
 def cmet_calories_per_minute(weight, speed):
-    """
-    Calculates the calories burned per minute according to 
-    the workout parameters. Uses a third-order MET polynomial.
-    Assumes weight is provided in kilograms and the speed is
-    provided in miles per hour.
-    """
     mets = cmet_cycling_met_units(speed)
     weight = _calc_pounds_to_kg(weight)
     return 0.0175*mets*weight
 
 
 def cmet_calc_total_calories_burned(weight, duration, speed):
-    """
-    Calculates the total caloric expenditure of a cycling
-    workout based on the parameters provided. Uses a third-
-    order MET polynomial. Assumes weight is provided in
-    pounds, duration in minutes, speed in miles per hour.
-    """
     calories_per_minute = cmet_calories_per_minute(weight, speed)
     return calories_per_minute*duration
 

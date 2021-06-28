@@ -15,11 +15,6 @@ def _calc_pounds_to_kg(pounds):
 
 
 def dmet_cycling_met_units(speed):
-    """
-    Calculates the MET units based on the provided average
-    speed throughout the workout. Assumes speed is provided
-    in miles per hour.
-    """
     if speed <= 10.0:
         return 4
     elif speed <= 11.99:
@@ -35,23 +30,12 @@ def dmet_cycling_met_units(speed):
 
 
 def dmet_calories_per_minute(weight, speed):
-    """
-    Calculates the calories burned per minute according to 
-    the workout parameters. Assumes weight is provided
-    in kilograms and the speed is provided in miles per hour.
-    """
     mets = dmet_cycling_met_units(speed)
     weight = _calc_pounds_to_kg(weight)
     return 0.0175*mets*weight
 
 
 def dmet_calc_total_calories_burned(weight, duration, speed):
-    """
-    Calculates the total caloric expenditure of a cycling
-    workout based on the parameters provided. Assumes weight
-    is provided in pounds, duration in minutes, speed in
-    miles per hour.
-    """
     calories_per_minute = dmet_calories_per_minute(weight, speed)
     return calories_per_minute*duration
 
