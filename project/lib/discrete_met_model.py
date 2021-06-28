@@ -10,34 +10,52 @@ __email__ = "seaborn.dev@gmail.com"
 __status__ = "Prototype"
 
 
-def _calc_pounds_to_kg(pounds):
-    return pounds/2.205
+class DMET(object):
+    
+    def __init__(self):
+        """
+        Input: None.
+        Output: DMET instance.
+        """
 
+    def _lbs_to_kg(self, pounds):
+        return pounds/2.205
 
-def dmet_cycling_met_units(speed):
-    if speed <= 10.0:
-        return 4
-    elif speed <= 11.99:
-        return 6
-    elif speed <= 13.99:
-        return 8
-    elif speed <= 15.99:
-        return 10
-    elif speed <= 19.99:
-        return 12
-    else:
-        return 14
+    def met_units(self, speed):
+        """
+        Input: Average speed in mph.
+        Output: Estimated MET units.
+        """
+        if speed <= 10.0:
+            return 4
+        elif speed <= 11.99:
+            return 6
+        elif speed <= 13.99:
+            return 8
+        elif speed <= 15.99:
+            return 10
+        elif speed <= 19.99:
+            return 12
+        else:
+            return 14
 
+    def calories_per_minute(self, speed, weight):
+        """
+        Input: Average speed in mph. Weight in pounds.
+        Output: Estimated calories burned per minute.
+        """
+        mets = self.met_units(speed)
+        weight = self._lbs_to_kg(weight)
+        return 0.0175*mets*weight
 
-def dmet_calories_per_minute(weight, speed):
-    mets = dmet_cycling_met_units(speed)
-    weight = _calc_pounds_to_kg(weight)
-    return 0.0175*mets*weight
-
-
-def dmet_calc_total_calories_burned(weight, duration, speed):
-    calories_per_minute = dmet_calories_per_minute(weight, speed)
-    return calories_per_minute*duration
+    def total_calories(self, speed, weight, duration):
+        """
+        Input: Average speed in mph.  Weight in pounds.
+            Duration of ride in minutes.
+        Output: Total estimated calories burned.
+        """
+        cpm = self.calories_per_minute(speed, weight)
+        return cpm*duration
 
 
 if __name__ == '__main__':
